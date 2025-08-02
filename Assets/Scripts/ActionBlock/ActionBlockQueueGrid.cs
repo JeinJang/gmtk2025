@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
@@ -18,6 +19,22 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
         base.Awake();
         blockGrid = new GameObject[columns, rows];
         gridArea = GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        // 디버깅용 : Action Block Row 로 넘기기
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            DispatchBottomRowToActionRow();
+        }
+
+        // 디버깅용 : Scene Reset
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            string currentScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentScene);
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -67,7 +84,6 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(gridArea, screenPosition, null, out Vector2 localPos);
 
-        Debug.Log(localPos);
         float totalWidth = columns * (cellSize.x + spacing.x);
         if (localPos.x < -1 * totalWidth / 2 || localPos.x > totalWidth / 2) return -1;
 
@@ -137,6 +153,35 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
                     }
                 }
             }
+        }
+    }
+
+
+    public void DispatchBottomRowToActionRow()
+    {
+        ActionBlockRow.Instance.ClearBlock();
+
+        for (int col = 0; col < columns; col++)
+        {
+            GameObject block = blockGrid[col, 0];
+
+            if (block == null)
+            {
+                ActionBlockRow.Instance.AddBlock(col, null); // ✅ null도 명시적으로 전달
+                continue;
+            }
+
+            // 제거 및 전달
+            blockGrid[col, 0] = null;
+
+            var ab = block.GetComponent<ActionBlock>();
+            ab.currentGrid = null;
+            ab.currentRow = -1;
+            ab.currentColumn = -1;
+
+            ActionBlockRow.Instance.AddBlock(col, ab);
+
+            CollapseColumn(col);
         }
     }
 
