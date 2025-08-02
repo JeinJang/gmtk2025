@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +7,11 @@ public class ActionBlockRow : MonoBehaviour
 {
     public static ActionBlockRow Instance { get; private set; }
 
-    public RectTransform container; // HorizontalLayoutGroup
-    public GameObject emptySlotPrefab; // null일 때 표시할 빈 슬롯
+    public RectTransform container;
+    public GameObject emptySlotPrefab;
+    public float cellWidth = 120f;
+    public float spacing = 0f;
+
     public List<ActionBlock?> blocksInRow = new();
 
     private void Awake()
@@ -20,7 +22,6 @@ public class ActionBlockRow : MonoBehaviour
 
     private void Update()
     {
-        // 디버깅용 : 턴 진행 
         if (Input.GetKeyDown(KeyCode.T))
         {
             StartConsumingBlocks();
@@ -29,7 +30,6 @@ public class ActionBlockRow : MonoBehaviour
 
     public void AddBlock(int columnIndex, ActionBlock? block)
     {
-        // 슬롯 확보
         while (blocksInRow.Count <= columnIndex)
             blocksInRow.Add(null);
 
@@ -37,64 +37,93 @@ public class ActionBlockRow : MonoBehaviour
         {
             blocksInRow[columnIndex] = block;
 
-            block.transform.SetParent(container);
-            block.transform.localScale = Vector3.one;
-            block.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            block.currentRow = -1;
-            block.currentColumn = -1;
-            block.currentGrid = null;
+            var tf = block.transform;
+            tf.SetParent(container);
+            tf.localScale = Vector3.one;
+
+            var rt = block.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0.125f, 0.5f);
+            rt.anchorMax = new Vector2(0.125f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+
+            // 수동 위치 계산
+            rt.anchoredPosition = GetAnchoredPosition(columnIndex);
         }
         else
         {
-            // null 슬롯이면 빈 오브젝트 프리팹으로 표시
             var empty = Instantiate(emptySlotPrefab, container);
-            empty.transform.localScale = Vector3.one;
+            var rt = empty.GetComponent<RectTransform>();
+            rt.localScale = Vector3.one;
+
+            rt.anchorMin = new Vector2(0.125f, 0.5f);
+            rt.anchorMax = new Vector2(0.125f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+
+            rt.anchoredPosition = GetAnchoredPosition(columnIndex);
+
             blocksInRow[columnIndex] = null;
         }
     }
 
-    public void StartConsumingBlocks(float delay = 0.25f)
+    private Vector2 GetAnchoredPosition(int index)
+    {
+        return new Vector2(index * (cellWidth + spacing), 0);
+    }
+
+    public void StartConsumingBlocks(float delay = 0.5f)
     {
         StartCoroutine(ConsumeBlocksSequentially(delay));
     }
 
     public IEnumerator ConsumeBlocksSequentially(float delay)
     {
-        for (int i = 0; i < blocksInRow.Count; i++)
+        while (blocksInRow.Count > 0)
         {
-            var block = blocksInRow[i];
+            var block = blocksInRow[0];
+            blocksInRow.RemoveAt(0); // 항상 첫 번째 요소 제거
+
             if (block != null)
             {
-                // 효과 
+                // 효과
                 var tf = block.transform;
                 var rt = tf as RectTransform;
                 if (rt != null)
                 {
                     rt.pivot = new Vector2(0.5f, 0.5f);
                 }
+
                 Sequence seq = DOTween.Sequence();
                 seq.Append(tf.DOScale(1.1f, 0.2f).SetEase(Ease.OutBack));
                 seq.Append(tf.DOScale(0.0f, 0.05f).SetEase(Ease.InBack));
+                yield return seq.WaitForCompletion();
 
+                Destroy(block.gameObject);
+            }
+            else
+            {
                 yield return new WaitForSeconds(0.25f);
+            }
+
+            // 나머지 블록들 위치 이동
+            for (int i = 0; i < blocksInRow.Count; i++)
+            {
+                if (blocksInRow[i] != null)
+                {
+                    var rt = blocksInRow[i].GetComponent<RectTransform>();
+                    rt.DOAnchorPos(GetAnchoredPosition(i), 0.25f).SetEase(Ease.OutCubic);
+                }
             }
 
             yield return new WaitForSeconds(delay);
         }
-
-        blocksInRow.Clear(); // 내부 리스트도 정리
     }
 
     public void ClearBlock()
     {
-        foreach (ActionBlock block in blocksInRow)
-        {
-            if (block == null) continue;
-            Destroy(block.gameObject);
-        }
-        foreach (Transform child in transform)
+        foreach (Transform child in container)
         {
             Destroy(child.gameObject);
         }
+        blocksInRow.Clear();
     }
 }
