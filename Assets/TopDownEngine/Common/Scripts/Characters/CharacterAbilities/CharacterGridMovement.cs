@@ -380,6 +380,11 @@ namespace MoreMountains.TopDownEngine
 			    }
 			}*/
 
+			if (this._horizontalMovement != 0f || this._verticalMovement != 0f)
+			{
+				Debug.Log($"HandleMovement: ({this._horizontalMovement}, {this._verticalMovement})");	
+			}
+
 			// if we're not in between grid cells
 			if (!_movingToNextGridUnit)
 			{
