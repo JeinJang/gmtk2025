@@ -137,4 +137,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TopDownEngine/ThirdParty/MoreMountains/MMTools/Demos/MMSceneLoading/MMSceneLoadingDemoSceneB.unity
     guid: 352d34cac2435634fb99618d19a3929c
+  - enabled: 1
+    path: Assets/Scenes/Jane-Character.unity
+    guid: e8c75c90aff2748518024d3192d5bcd5
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
