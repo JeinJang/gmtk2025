@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
@@ -27,14 +28,18 @@ public class StageManager : MonoBehaviour
 
     public void LoadStage(int stageIdx)
     {
-        // 1. 스테이지 폴더 활성화/비활성화
-        for (int i = 0; i < stageFolders.Count; i++)
+        // 1. GridManager 전체 셀 클리어 (강제 초기화)
+        if (GridManager.Instance != null)
         {
-            stageFolders[i].SetActive(i == stageIdx);
-        }
-        currentStageIndex = stageIdx;
+            GridManager.Instance.OccupiedGridCells.Clear();
+            if (GridManager.Instance.LastPositions != null)
+                GridManager.Instance.LastPositions.Clear();
 
-        // 기존 플레이어 제거
+            if (GridManager.Instance.NextPositions != null)
+                GridManager.Instance.NextPositions.Clear();
+        }
+
+        // 2. 기존 플레이어 제거
         if (currentPlayer != null)
         {
             Destroy(currentPlayer);
@@ -42,6 +47,16 @@ public class StageManager : MonoBehaviour
 
         // SpawnPoint 위치에 새 플레이어 생성
         SetPlayer(stageIdx);
+
+
+        // 3. 스테이지 폴더 활성화/비활성화
+        for (int i = 0; i < stageFolders.Count; i++)
+        {
+            stageFolders[i].SetActive(i == stageIdx);
+        }
+        currentStageIndex = stageIdx;
+
+
     }
 
     public void SetPlayer(int stageIdx)
@@ -50,6 +65,9 @@ public class StageManager : MonoBehaviour
         if (spawn != null && playerPrefab != null)
         {
             currentPlayer = Instantiate(playerPrefab, spawn.position, Quaternion.identity);
+
+            // 한 프레임 대기 후 GridManager 위치 등록
+            StartCoroutine(InitializePlayerGridPosition());
         }
     }
 
@@ -69,5 +87,16 @@ public class StageManager : MonoBehaviour
     {
         _gameClearEvent.RaiseEvent();
         NextStage();
+    }
+
+    private IEnumerator InitializePlayerGridPosition()
+    {
+        yield return null; // 한 프레임 대기
+
+        var charGridMovement = currentPlayer.GetComponent<CharacterGridMovement>();
+        if (charGridMovement != null)
+        {
+            charGridMovement.SetCurrentWorldPositionAsNewPosition();
+        }
     }
 }
