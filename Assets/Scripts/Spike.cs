@@ -34,11 +34,13 @@ namespace DefaultNamespace
         private void OnEnable()
         {
             _triggerMapActionEvent.OnEventRaised += OnAction;
+            _gameFailedEvent.OnEventRaised += OnReset;
         }
 
         private void OnDisable()
         {
             _triggerMapActionEvent.OnEventRaised -= OnAction;
+            _gameFailedEvent.OnEventRaised -= OnReset;
         }
 
         void OnAction()
@@ -65,12 +67,17 @@ namespace DefaultNamespace
         {
             if (other.CompareTag("Player") && IsUp)
             {
-                SpikeDown();
-                _counter = 0;
+                OnReset();
                 Destroy(other.gameObject);
                 StageManager.Instance.ResetPlayer();
                 _gameFailedEvent.RaiseEvent();
             }
+        }
+
+        void OnReset()
+        {
+            SpikeDown();
+            _counter = 0;
         }
 
         void TestUp()
