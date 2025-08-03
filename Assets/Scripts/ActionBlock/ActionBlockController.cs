@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionBlockManager : MonoBehaviour
+public class ActionBlockController : MonoBehaviour
 {
-    public static ActionBlockManager Instance { get; private set; }
+    public static ActionBlockController Instance { get; private set; }
 
     [SerializeField] private VoidEventChannelSO _gameStartEvent;
     [SerializeField] private VoidEventChannelSO _gameFailedEvent;
@@ -17,8 +17,7 @@ public class ActionBlockManager : MonoBehaviour
 
     private void Awake()
     {
-        _inventory = gameObject.transform.parent.GetComponentInChildren<ActionBlockInventory>();
-        _queueGrid = gameObject.transform.parent.GetComponentInChildren<ActionBlockQueueGrid>();
+        Instance = this;
     }
 
     private void OnEnable()
@@ -40,20 +39,20 @@ public class ActionBlockManager : MonoBehaviour
         Debug.Log("게임 시작");
 
         List<Transform> blocks = new();
-        foreach (Transform child in _inventory.transform)
+        foreach (Transform child in ActionBlockInventory.Instance.transform)
         {
             blocks.Add(child);
         }
         _originalInventory = DeepCopyBlockList(blocks);
-        _originalBlockGrid = DeepCopyBlockGrid(_queueGrid.blockGrid);
+        _originalBlockGrid = DeepCopyBlockGrid(ActionBlockQueueGrid.Instance.blockGrid);
         StartCoroutine(SetNewRow());
     }
 
     private void OnGameFailed()
     {
         Debug.Log("게임 실패");
-        _inventory.Rollback(_originalInventory);
-        _queueGrid.Reset(_originalBlockGrid);
+        ActionBlockInventory.Instance.Rollback(_originalInventory);
+        ActionBlockQueueGrid.Instance.Reset(_originalBlockGrid);
         ActionBlockRow.Instance.ClearBlock();
     }
 
@@ -72,7 +71,7 @@ public class ActionBlockManager : MonoBehaviour
 
     private IEnumerator SetNewRow()
     {
-        _queueGrid.DispatchBottomRowToActionRow();
+        ActionBlockQueueGrid.Instance.DispatchBottomRowToActionRow();
         yield return new WaitForSeconds(0.25f);
         StartCoroutine(ActionBlockRow.Instance.ConsumeBlock());
     }

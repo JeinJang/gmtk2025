@@ -5,10 +5,12 @@ using DG.Tweening;
 
 public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
 {
+    public static ActionBlockQueueGrid Instance { get; private set; }
+
     public int columns = 4;
     public int rows = 3;
-    public Vector2 cellSize = new(120, 120);
-    public Vector2 spacing = new(0, 0);
+    public Vector2 cellSize = new(64, 64);
+    public Vector2 spacing = new(8, 0);
 
     public RectTransform gridArea; // 그리드가 렌더링되는 공간
     public GameObject[,] blockGrid { get; private set; }
@@ -16,6 +18,7 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
     protected override void Awake()
     {
         base.Awake();
+        Instance = this;
         blockGrid = new GameObject[columns, rows];
         gridArea = GetComponent<RectTransform>();
     }

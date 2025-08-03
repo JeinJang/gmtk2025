@@ -5,7 +5,8 @@ public enum ActionType
     MOVE_FORWARD,
     MOVE_BACKWARD,
     MOVE_LEFT,
-    MOVE_RIGHT
+    MOVE_RIGHT,
+    BLANK
 }
 
 [CreateAssetMenu(fileName = "ActionBlockSO", menuName = "Scriptable Objects/Action Block")]

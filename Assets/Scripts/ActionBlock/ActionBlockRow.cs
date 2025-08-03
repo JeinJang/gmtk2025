@@ -10,10 +10,10 @@ public class ActionBlockRow : MonoBehaviour
 
     public RectTransform container;
     public GameObject emptySlotPrefab;
-    public float cellWidth = 120f;
-    public float spacing = 0f;
+    public float cellWidth = 64f;
+    public float spacing = 8f;
 
-    public List<ActionBlock?> blocksInRow = new();
+    public List<GameObject> blocksInRow = new();
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class ActionBlockRow : MonoBehaviour
 
         if (block != null)
         {
-            blocksInRow[columnIndex] = block;
+            blocksInRow[columnIndex] = block.gameObject;
 
             var tf = block.transform;
             tf.SetParent(container);
@@ -54,7 +54,7 @@ public class ActionBlockRow : MonoBehaviour
 
             rt.anchoredPosition = GetAnchoredPosition(columnIndex);
 
-            blocksInRow[columnIndex] = null;
+            blocksInRow[columnIndex] = empty;
         }
     }
 
@@ -66,9 +66,10 @@ public class ActionBlockRow : MonoBehaviour
     public IEnumerator ConsumeBlock()
     {
         var block = blocksInRow[0];
+        var actionComponent = block.GetComponent<ActionBlock>();
         blocksInRow.RemoveAt(0); // 항상 첫 번째 요소 제거
 
-        if (block != null)
+        if (actionComponent != null)
         {
             // 효과
             var tf = block.transform;
@@ -83,7 +84,7 @@ public class ActionBlockRow : MonoBehaviour
             seq.Append(tf.DOScale(0.0f, 0.05f).SetEase(Ease.InBack));
             yield return seq.WaitForCompletion();
 
-            _turnStartEvent.RaiseEvent(block.actionType);
+            _turnStartEvent.RaiseEvent(block.GetComponent<ActionBlock>().actionType);
 
             Destroy(block.gameObject);
         }
@@ -96,9 +97,11 @@ public class ActionBlockRow : MonoBehaviour
         // 나머지 블록들 위치 이동
         for (int i = 0; i < blocksInRow.Count; i++)
         {
-            if (blocksInRow[i] != null)
+            var item = blocksInRow[i];
+
+            if (item != null)
             {
-                var rt = blocksInRow[i].GetComponent<RectTransform>();
+                var rt = item.GetComponent<RectTransform>();
                 rt.DOAnchorPos(GetAnchoredPosition(i), 0.25f).SetEase(Ease.OutCubic);
             }
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e3f3582719e54ab4ad6a64a4d5c1ef9, type: 3}
-  m_Name: Move Left Action Data
+  m_Name: Blank Action Data
   m_EditorClassIdentifier: 
-  type: 2
-  sprite: {fileID: -5082180139590515919, guid: 27e14331d8dff4d70a05e593e2b8d1c5, type: 3}
+  type: 4
+  sprite: {fileID: -2333262725747797484, guid: 27e14331d8dff4d70a05e593e2b8d1c5, type: 3}
