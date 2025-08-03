@@ -808,7 +808,7 @@ PrefabInstance:
     - target: {fileID: 4369548210848937839, guid: fa2e173ffe3f94e74bb9a966db331f29,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4369548210848937839, guid: fa2e173ffe3f94e74bb9a966db331f29,
         type: 3}
@@ -1418,7 +1418,7 @@ Transform:
   m_GameObject: {fileID: 354787925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1595,8 +1595,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425632851}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33324018, y: -0.33818576, z: 0.12945805, w: 0.8705298}
-  m_LocalPosition: {x: 17.835608, y: 23.692581, z: -19.484882}
+  m_LocalRotation: {x: 0.41695097, y: -0.30330378, z: 0.14990579, w: 0.8436154}
+  m_LocalPosition: {x: 13.646123, y: 28.028265, z: -21.45947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1966,7 +1966,7 @@ Transform:
   m_GameObject: {fileID: 502091088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 1, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6300,8 +6300,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999654181}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33324018, y: -0.33818576, z: 0.12945805, w: 0.8705298}
-  m_LocalPosition: {x: 17.835608, y: 23.692581, z: -19.484882}
+  m_LocalRotation: {x: 0.416951, y: -0.30330375, z: 0.14990577, w: 0.8436154}
+  m_LocalPosition: {x: 13.646122, y: 28.028267, z: -21.459469}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 2.76, y: 3.66, z: -3.01}
+  m_TrackedObjectOffset: {x: 2.49, y: 3.66, z: -3.01}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
@@ -6778,8 +6778,8 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
+  m_ScreenX: 0.5000002
+  m_ScreenY: 0.58333343
   m_CameraDistance: 30
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
