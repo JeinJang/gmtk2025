@@ -45,10 +45,6 @@ public class StageManager : MonoBehaviour
             Destroy(currentPlayer);
         }
 
-        // SpawnPoint 위치에 새 플레이어 생성
-        SetPlayer(stageIdx);
-
-
         // 3. 스테이지 폴더 활성화/비활성화
         for (int i = 0; i < stageFolders.Count; i++)
         {
@@ -56,7 +52,8 @@ public class StageManager : MonoBehaviour
         }
         currentStageIndex = stageIdx;
 
-
+        // 4. SpawnPoint 위치에 새 플레이어 생성
+        SetPlayer(stageIdx);
     }
 
     public void SetPlayer(int stageIdx)
@@ -74,6 +71,15 @@ public class StageManager : MonoBehaviour
     public void ResetPlayer()
     {
         SetPlayer(currentStageIndex);
+        if (GridManager.Instance != null)
+        {
+            GridManager.Instance.OccupiedGridCells.Clear();
+            if (GridManager.Instance.LastPositions != null)
+                GridManager.Instance.LastPositions.Clear();
+
+            if (GridManager.Instance.NextPositions != null)
+                GridManager.Instance.NextPositions.Clear();
+        }
     }
 
     public void NextStage()

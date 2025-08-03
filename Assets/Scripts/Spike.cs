@@ -14,7 +14,7 @@ namespace DefaultNamespace
         protected int _upAnimationParameter;
         public virtual HashSet<int> _animatorParameters { get; set; } = new HashSet<int>();
         public bool IsUp;
-        
+
         [Header("Test")]
         [MMInspectorButton("TestUp")]
         public bool UpButton;
@@ -63,7 +63,7 @@ namespace DefaultNamespace
             }
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player") && IsUp)
             {
