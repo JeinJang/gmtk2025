@@ -45,20 +45,4 @@ public class InGameManager : MonoBehaviour
             SceneManager.LoadScene(currentScene);
         }
     }
-
-    private void OnEnable()
-    {
-        _turnStartEvent.OnEventRaised += OnTurnStart;
-    }
-
-    private void OnDisable()
-    {
-        _turnStartEvent.OnEventRaised -= OnTurnStart;
-    }
-
-
-    private void OnTurnStart()
-    {
-        Debug.Log(string.Format("액션: {0}", _turnStartEvent.actionType));
-    }
 }
