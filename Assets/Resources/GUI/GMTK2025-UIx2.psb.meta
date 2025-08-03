@@ -1,0 +1,518 @@
+fileFormatVersion: 2
+guid: 27e14331d8dff4d70a05e593e2b8d1c5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 64
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 8e4fbe57486894a37a2cbc24cd3cc90f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: Command_Blank
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 76
+      width: 40
+      height: 42
+    spriteID: 87d561b3f368c42539f04eb375298bac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 76}
+    spritePosition: {x: 12, y: 10}
+  - name: Command_Bottom
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 126
+      width: 40
+      height: 42
+    spriteID: 24870813e6f6e484295ce8c816e72812
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 126}
+    spritePosition: {x: 12, y: 10}
+  - name: Command_Top
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 176
+      width: 40
+      height: 42
+    spriteID: f21ff969ce02147adb73015bad7744af
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 176}
+    spritePosition: {x: 12, y: 10}
+  - name: Command_Left
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 148
+      y: 4
+      width: 40
+      height: 42
+    spriteID: ae44b9cc630c343029007a91838f38d2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 148, y: 4}
+    spritePosition: {x: 12, y: 10}
+  - name: Command_Right
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 148
+      y: 54
+      width: 40
+      height: 42
+    spriteID: cf294ede93b6e44b696763a92b35d983
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 148, y: 54}
+    spritePosition: {x: 12, y: 10}
+  - name: Panel_Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 4, y: 4, z: 4, w: 4}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 64
+      height: 64
+    spriteID: 091aaabdfb6e84f35a65f229bac30400
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 0}
+  - name: Box_Label
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 4, y: 4, z: 4, w: 4}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 76
+      width: 64
+      height: 64
+    spriteID: 7a2adcb5e7ef14c5d9bf57ba31fa097a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 76}
+    spritePosition: {x: 0, y: 0}
+  - name: Box_Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 4, y: 4, z: 4, w: 4}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 148
+      width: 64
+      height: 64
+    spriteID: 525cd58aca2254c4fb078a29e4e97528
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 148}
+    spritePosition: {x: 0, y: 0}
+  - name: Box_Cell
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 4, y: 4, z: 4, w: 4}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 4
+      width: 64
+      height: 64
+    spriteID: 7be1e9851645347fe9de56a32fc85819
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 4}
+    spritePosition: {x: 0, y: 0}
+  spriteImportData: []
+  rigSpriteImportData: []
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: Palette
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 9532cef740c044c399fbcf05e54732e4
+    layerID: 2
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Commands
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 33fa6cf307abc4956891d762c6a6778f
+    layerID: 7
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Command_Blank
+    spriteName: Command_Blank
+    isGroup: 0
+    parentIndex: 1
+    spriteID: 87d561b3f368c42539f04eb375298bac
+    layerID: 14
+    mosaicPosition: {x: 76, y: 76}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Command_Bottom
+    spriteName: Command_Bottom
+    isGroup: 0
+    parentIndex: 1
+    spriteID: 24870813e6f6e484295ce8c816e72812
+    layerID: 13
+    mosaicPosition: {x: 76, y: 126}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Command_Top
+    spriteName: Command_Top
+    isGroup: 0
+    parentIndex: 1
+    spriteID: f21ff969ce02147adb73015bad7744af
+    layerID: 12
+    mosaicPosition: {x: 76, y: 176}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Command_Left
+    spriteName: Command_Left
+    isGroup: 0
+    parentIndex: 1
+    spriteID: ae44b9cc630c343029007a91838f38d2
+    layerID: 11
+    mosaicPosition: {x: 148, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Command_Right
+    spriteName: Command_Right
+    isGroup: 0
+    parentIndex: 1
+    spriteID: cf294ede93b6e44b696763a92b35d983
+    layerID: 6
+    mosaicPosition: {x: 148, y: 54}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: UIs
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 378ab5bd4696f4afd861b77af0eb7f4c
+    layerID: 9
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Panel_Background
+    spriteName: Panel_Background
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 091aaabdfb6e84f35a65f229bac30400
+    layerID: 4
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Box_Label
+    spriteName: Box_Label
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 849e178ca469644a9bf5a61d4e28d3f6
+    layerID: 17
+    mosaicPosition: {x: 4, y: 76}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Box_Label
+    spriteName: Box_Label
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 7a2adcb5e7ef14c5d9bf57ba31fa097a
+    layerID: 19
+    mosaicPosition: {x: 4, y: 76}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Box_Background
+    spriteName: Box_Background
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 525cd58aca2254c4fb078a29e4e97528
+    layerID: 18
+    mosaicPosition: {x: 4, y: 148}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Box_Cell
+    spriteName: Box_Cell
+    isGroup: 0
+    parentIndex: 7
+    spriteID: 7be1e9851645347fe9de56a32fc85819
+    layerID: 3
+    mosaicPosition: {x: 76, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Background
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ecd535d5a276a402289dbee66cffc8a4
+    layerID: 1
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  mosaicPSDLayers: []
+  rigPSDLayers: []
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
