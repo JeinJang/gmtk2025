@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class ActionBlockRow : MonoBehaviour
 {
+    [SerializeField] private ActionEventChannelSO _turnStartEvent;
     public static ActionBlockRow Instance { get; private set; }
 
     public RectTransform container;
@@ -18,14 +19,6 @@ public class ActionBlockRow : MonoBehaviour
     {
         Instance = this;
         container = GetComponent<RectTransform>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartConsumingBlocks();
-        }
     }
 
     public void AddBlock(int columnIndex, ActionBlock? block)
@@ -70,51 +63,44 @@ public class ActionBlockRow : MonoBehaviour
         return new Vector2(index * (cellWidth + spacing), 0);
     }
 
-    public void StartConsumingBlocks(float delay = 0.5f)
+    public IEnumerator ConsumeBlock()
     {
-        StartCoroutine(ConsumeBlocksSequentially(delay));
-    }
+        var block = blocksInRow[0];
+        blocksInRow.RemoveAt(0); // 항상 첫 번째 요소 제거
 
-    public IEnumerator ConsumeBlocksSequentially(float delay)
-    {
-        while (blocksInRow.Count > 0)
+        if (block != null)
         {
-            var block = blocksInRow[0];
-            blocksInRow.RemoveAt(0); // 항상 첫 번째 요소 제거
-
-            if (block != null)
+            // 효과
+            var tf = block.transform;
+            var rt = tf as RectTransform;
+            if (rt != null)
             {
-                // 효과
-                var tf = block.transform;
-                var rt = tf as RectTransform;
-                if (rt != null)
-                {
-                    rt.pivot = new Vector2(0.5f, 0.5f);
-                }
-
-                Sequence seq = DOTween.Sequence();
-                seq.Append(tf.DOScale(1.1f, 0.2f).SetEase(Ease.OutBack));
-                seq.Append(tf.DOScale(0.0f, 0.05f).SetEase(Ease.InBack));
-                yield return seq.WaitForCompletion();
-
-                Destroy(block.gameObject);
-            }
-            else
-            {
-                yield return new WaitForSeconds(0.25f);
+                rt.pivot = new Vector2(0.5f, 0.5f);
             }
 
-            // 나머지 블록들 위치 이동
-            for (int i = 0; i < blocksInRow.Count; i++)
-            {
-                if (blocksInRow[i] != null)
-                {
-                    var rt = blocksInRow[i].GetComponent<RectTransform>();
-                    rt.DOAnchorPos(GetAnchoredPosition(i), 0.25f).SetEase(Ease.OutCubic);
-                }
-            }
+            Sequence seq = DOTween.Sequence();
+            seq.Append(tf.DOScale(1.1f, 0.2f).SetEase(Ease.OutBack));
+            seq.Append(tf.DOScale(0.0f, 0.05f).SetEase(Ease.InBack));
+            yield return seq.WaitForCompletion();
 
-            yield return new WaitForSeconds(delay);
+            _turnStartEvent.RaiseEvent(block.actionType);
+
+            Destroy(block.gameObject);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.25f);
+            _turnStartEvent.RaiseEvent(null);
+        }
+
+        // 나머지 블록들 위치 이동
+        for (int i = 0; i < blocksInRow.Count; i++)
+        {
+            if (blocksInRow[i] != null)
+            {
+                var rt = blocksInRow[i].GetComponent<RectTransform>();
+                rt.DOAnchorPos(GetAnchoredPosition(i), 0.25f).SetEase(Ease.OutCubic);
+            }
         }
     }
 

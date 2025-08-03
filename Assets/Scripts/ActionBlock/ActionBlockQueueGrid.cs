@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
@@ -12,29 +11,13 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
     public Vector2 spacing = new(0, 0);
 
     public RectTransform gridArea; // 그리드가 렌더링되는 공간
-    private GameObject[,] blockGrid;
+    public GameObject[,] blockGrid { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         blockGrid = new GameObject[columns, rows];
         gridArea = GetComponent<RectTransform>();
-    }
-
-    private void Update()
-    {
-        // 디버깅용 : Action Block Row 로 넘기기
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            DispatchBottomRowToActionRow();
-        }
-
-        // 디버깅용 : Scene Reset
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            string currentScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentScene);
-        }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -183,6 +166,60 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
 
             CollapseColumn(col);
         }
+    }
+
+    public void Reset(GameObject[,] originalBlockGrid)
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        blockGrid = DeepCopyBlockGrid(originalBlockGrid);
+    }
+
+    private GameObject[,] DeepCopyBlockGrid(GameObject[,] original)
+    {
+        int cols = original.GetLength(0);
+        int rows = original.GetLength(1);
+        GameObject[,] copy = new GameObject[cols, rows];
+
+        for (int x = 0; x < cols; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                GameObject originalObj = original[x, y];
+
+                if (originalObj != null)
+                {
+                    GameObject clone = Instantiate(originalObj);
+                    clone.name = originalObj.name;
+                    clone.SetActive(originalObj.activeSelf);
+                    clone.transform.SetParent(transform);
+
+                    var data = clone.GetComponent<ActionBlock>();
+                    var rt = clone.GetComponent<RectTransform>();
+
+                    rt.localScale = Vector3.one;
+                    rt.anchorMin = new Vector2(0, 0);
+                    rt.anchorMax = new Vector2(0, 0);
+                    rt.pivot = new Vector2(0, 0);
+
+                    Vector2 pos = new Vector2(
+                        data.currentColumn * (cellSize.x + spacing.x),
+                        data.currentRow * (cellSize.y + spacing.y)
+                    );
+                    rt.anchoredPosition = pos;
+
+                    copy[x, y] = clone;
+                }
+                else
+                {
+                    copy[x, y] = null;
+                }
+            }
+        }
+
+        return copy;
     }
 
 }
