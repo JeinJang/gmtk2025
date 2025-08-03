@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public static StageManager Instance { get; private set; }
 
     [SerializeField] private VoidEventChannelSO _gameClearEvent;
 
@@ -15,6 +16,10 @@ public class StageManager : MonoBehaviour
 
     public GameObject player;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         LoadStage(0);
@@ -36,11 +41,21 @@ public class StageManager : MonoBehaviour
         }
 
         // SpawnPoint 위치에 새 플레이어 생성
+        SetPlayer(stageIdx);
+    }
+
+    public void SetPlayer(int stageIdx)
+    {
         Transform spawn = stageFolders[stageIdx].transform.Find("SpawnPoint");
         if (spawn != null && playerPrefab != null)
         {
             currentPlayer = Instantiate(playerPrefab, spawn.position, Quaternion.identity);
         }
+    }
+
+    public void ResetPlayer()
+    {
+        SetPlayer(currentStageIndex);
     }
 
     public void NextStage()

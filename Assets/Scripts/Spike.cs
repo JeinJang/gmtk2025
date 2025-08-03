@@ -63,8 +63,12 @@ namespace DefaultNamespace
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && IsUp)
             {
+                SpikeDown();
+                _counter = 0;
+                Destroy(other.gameObject);
+                StageManager.Instance.ResetPlayer();
                 _gameFailedEvent.RaiseEvent();
             }
         }

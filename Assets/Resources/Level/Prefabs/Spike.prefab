@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4753182271235799072}
   - component: {fileID: 6273983487462411759}
+  - component: {fileID: 9150352412008118977}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -47,9 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _triggerMapActionEvent: {fileID: 11400000, guid: 81c0d15420c2f416ab49d86689bd039e,
     type: 2}
+  _gameFailedEvent: {fileID: 11400000, guid: 82430b90a1d624cdcbbb424f9d138e96, type: 2}
   IsUp: 0
   UpButton: 0
   DownButton: 0
+--- !u!65 &9150352412008118977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273833090169630254}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6687692519178741736
 GameObject:
   m_ObjectHideFlags: 0
