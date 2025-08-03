@@ -20,12 +20,6 @@ public class InGameManager : MonoBehaviour
     void Update()
     {
         // 디버깅용
-        // 게임 시작 이벤트
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _gameStartEvent.RaiseEvent();
-        }
-
         // 게임 실패 이벤트
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -44,5 +38,10 @@ public class InGameManager : MonoBehaviour
             string currentScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentScene);
         }
+    }
+
+    public void OnGameStart()
+    {
+        _gameStartEvent.RaiseEvent();
     }
 }
