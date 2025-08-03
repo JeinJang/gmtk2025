@@ -9,6 +9,8 @@ public class CharacterOutDetector : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("레벨 벗어남");
+            Destroy(other.gameObject);
+            StageManager.Instance.ResetPlayer();
             _gameFailedEvent.RaiseEvent();
         }
     }

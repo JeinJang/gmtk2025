@@ -7,6 +7,9 @@ namespace DefaultNamespace
 {
     public class Spike : MonoBehaviour
     {
+        [SerializeField] private VoidEventChannelSO _triggerMapActionEvent;
+        [SerializeField] private VoidEventChannelSO _gameFailedEvent;
+
         protected const string _upParameterName = "Up";
         protected int _upAnimationParameter;
         public virtual HashSet<int> _animatorParameters { get; set; } = new HashSet<int>();
@@ -20,10 +23,54 @@ namespace DefaultNamespace
 
         Animator _animator;
 
+        private int _counter = 0;
+
         void Awake()
         {
             this._animator = this.GetComponentInChildren<Animator>();
             MMAnimatorExtensions.AddAnimatorParameterIfExists(_animator, _upParameterName, out _upAnimationParameter, AnimatorControllerParameterType.Bool, _animatorParameters);
+        }
+
+        private void OnEnable()
+        {
+            _triggerMapActionEvent.OnEventRaised += OnAction;
+        }
+
+        private void OnDisable()
+        {
+            _triggerMapActionEvent.OnEventRaised -= OnAction;
+        }
+
+        void OnAction()
+        {
+            if (_counter == 0)
+            {
+                if (IsUp)
+                {
+                    SpikeDown();
+                }
+                else
+                {
+                    SpikeUp();
+                }
+                _counter++;
+            }
+            else
+            {
+                _counter = 0;
+            }
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player") && IsUp)
+            {
+                SpikeDown();
+                _counter = 0;
+                Destroy(other.gameObject);
+                StageManager.Instance.ResetPlayer();
+                _gameFailedEvent.RaiseEvent();
+            }
         }
 
         void TestUp()
@@ -47,5 +94,7 @@ namespace DefaultNamespace
             IsUp = false;
             this._animator.SetBool(this._upAnimationParameter, false);
         }
+
+
     }
 }

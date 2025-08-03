@@ -7,6 +7,7 @@ public class ActionBlockController : MonoBehaviour
     public static ActionBlockController Instance { get; private set; }
 
     [SerializeField] private VoidEventChannelSO _gameStartEvent;
+    [SerializeField] private VoidEventChannelSO _gameClearEvent;
     [SerializeField] private VoidEventChannelSO _gameFailedEvent;
     [SerializeField] private VoidEventChannelSO _turnEndEvent;
 
@@ -14,6 +15,8 @@ public class ActionBlockController : MonoBehaviour
     private ActionBlockQueueGrid _queueGrid;
     private List<GameObject> _originalInventory;
     private GameObject[,] _originalBlockGrid;
+
+    public bool isGamePlaying { get; private set; }
 
     private void Awake()
     {
@@ -23,6 +26,7 @@ public class ActionBlockController : MonoBehaviour
     private void OnEnable()
     {
         _gameStartEvent.OnEventRaised += OnGameStart;
+        _gameClearEvent.OnEventRaised += OnGameClear;
         _gameFailedEvent.OnEventRaised += OnGameFailed;
         _turnEndEvent.OnEventRaised += OnTurnEnd;
     }
@@ -30,6 +34,7 @@ public class ActionBlockController : MonoBehaviour
     private void OnDisable()
     {
         _gameStartEvent.OnEventRaised -= OnGameStart;
+        _gameClearEvent.OnEventRaised -= OnGameClear;
         _gameFailedEvent.OnEventRaised -= OnGameFailed;
         _turnEndEvent.OnEventRaised -= OnTurnEnd;
     }
@@ -43,14 +48,32 @@ public class ActionBlockController : MonoBehaviour
         {
             blocks.Add(child);
         }
+
+        isGamePlaying = true;
         _originalInventory = DeepCopyBlockList(blocks);
         _originalBlockGrid = DeepCopyBlockGrid(ActionBlockQueueGrid.Instance.blockGrid);
         StartCoroutine(SetNewRow());
     }
 
+    private void OnGameClear()
+    {
+        Debug.Log("스테이지 클리어");
+
+        isGamePlaying = false;
+        ActionBlockInventory.Instance.Reset();
+        ActionBlockQueueGrid.Instance.Reset(
+            new GameObject[
+                ActionBlockQueueGrid.Instance.columns,
+                ActionBlockQueueGrid.Instance.rows
+            ]
+        );
+        ActionBlockRow.Instance.ClearBlock();
+    }
     private void OnGameFailed()
     {
         Debug.Log("게임 실패");
+
+        isGamePlaying = false;
         ActionBlockInventory.Instance.Rollback(_originalInventory);
         ActionBlockQueueGrid.Instance.Reset(_originalBlockGrid);
         ActionBlockRow.Instance.ClearBlock();

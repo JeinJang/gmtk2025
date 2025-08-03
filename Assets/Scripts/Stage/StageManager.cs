@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public static StageManager Instance { get; private set; }
+
+    [SerializeField] private VoidEventChannelSO _gameClearEvent;
+
     public List<GameObject> stageFolders;
     public GameObject playerPrefab; // 인스펙터에 플레이어 프리팹 할당
 
@@ -13,6 +17,10 @@ public class StageManager : MonoBehaviour
 
     public GameObject player;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         LoadStage(0);
@@ -37,6 +45,10 @@ public class StageManager : MonoBehaviour
             Destroy(currentPlayer);
         }
 
+        // SpawnPoint 위치에 새 플레이어 생성
+        SetPlayer(stageIdx);
+
+
         // 3. 스테이지 폴더 활성화/비활성화
         for (int i = 0; i < stageFolders.Count; i++)
         {
@@ -44,7 +56,11 @@ public class StageManager : MonoBehaviour
         }
         currentStageIndex = stageIdx;
 
-        // 4. 새 플레이어 생성 및 위치 초기화
+
+    }
+
+    public void SetPlayer(int stageIdx)
+    {
         Transform spawn = stageFolders[stageIdx].transform.Find("SpawnPoint");
         if (spawn != null && playerPrefab != null)
         {
@@ -53,6 +69,11 @@ public class StageManager : MonoBehaviour
             // 한 프레임 대기 후 GridManager 위치 등록
             StartCoroutine(InitializePlayerGridPosition());
         }
+    }
+
+    public void ResetPlayer()
+    {
+        SetPlayer(currentStageIndex);
     }
 
     public void NextStage()
@@ -64,6 +85,7 @@ public class StageManager : MonoBehaviour
     // Goal에 닿으면 이 함수를 호출
     public void OnStageClear()
     {
+        _gameClearEvent.RaiseEvent();
         NextStage();
     }
 

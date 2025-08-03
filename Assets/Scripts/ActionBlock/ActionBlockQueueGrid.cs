@@ -27,6 +27,7 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
     {
         FadeOut();
 
+        if (ActionBlockController.Instance.isGamePlaying) return;
         GameObject dropped = eventData.pointerDrag;
         if (dropped == null || dropped.GetComponent<ActionBlock>() == null)
             return;
