@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance { get; private set; }
 
     [SerializeField] private VoidEventChannelSO _gameClearEvent;
+    [SerializeField] private VoidEventChannelSO _gameFailedEvent;
 
     public List<GameObject> stageFolders;
     public GameObject playerPrefab; // 인스펙터에 플레이어 프리팹 할당
@@ -25,6 +26,18 @@ public class StageManager : MonoBehaviour
     {
         LoadStage(0);
     }
+
+
+    private void OnEnable()
+    {
+        _gameFailedEvent.OnEventRaised += OnGameFailed;
+    }
+
+    private void OnDisable()
+    {
+        _gameFailedEvent.OnEventRaised -= OnGameFailed;
+    }
+
 
     public void LoadStage(int stageIdx)
     {
@@ -104,5 +117,14 @@ public class StageManager : MonoBehaviour
         {
             charGridMovement.SetCurrentWorldPositionAsNewPosition();
         }
+    }
+
+    private void OnGameFailed()
+    {
+        if (currentPlayer != null)
+        {
+            Destroy(currentPlayer);
+        }
+        ResetPlayer();
     }
 }

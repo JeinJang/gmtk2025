@@ -82,6 +82,7 @@ public class ActionBlockController : MonoBehaviour
     private void OnTurnEnd()
     {
         //ActionBlockRow.Instance;
+        if (!isGamePlaying) return;
         if (ActionBlockRow.Instance.blocksInRow.Count > 0)
         {
             StartCoroutine(ActionBlockRow.Instance.ConsumeBlock());
@@ -91,6 +92,10 @@ public class ActionBlockController : MonoBehaviour
             if (!ActionBlockQueueGrid.Instance.CheckIsEmpty())
             {
                 StartCoroutine(SetNewRow());
+            }
+            else
+            {
+                _gameFailedEvent.RaiseEvent();
             }
         }
     }

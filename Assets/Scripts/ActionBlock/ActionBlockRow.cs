@@ -6,6 +6,7 @@ using DG.Tweening;
 public class ActionBlockRow : MonoBehaviour
 {
     [SerializeField] private ActionEventChannelSO _turnStartEvent;
+    [SerializeField] private VoidEventChannelSO _gameFailedEvent;
     public static ActionBlockRow Instance { get; private set; }
 
     public RectTransform container;
@@ -67,6 +68,11 @@ public class ActionBlockRow : MonoBehaviour
     {
         var block = blocksInRow[0];
         var actionComponent = block.GetComponent<ActionBlock>();
+        if (blocksInRow.Count == 0)
+        {
+            _gameFailedEvent.RaiseEvent();
+            yield break;
+        }
         blocksInRow.RemoveAt(0); // 항상 첫 번째 요소 제거
 
         if (actionComponent != null)

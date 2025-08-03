@@ -69,7 +69,6 @@ namespace DefaultNamespace
             {
                 OnReset();
                 Destroy(other.gameObject);
-                StageManager.Instance.ResetPlayer();
                 _gameFailedEvent.RaiseEvent();
             }
         }
