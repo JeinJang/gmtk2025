@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: bfbd4e76135434fd789489a9d4dbb7c3
+<<<<<<<< HEAD:Assets/Scenes/Jane-Character.unity.meta
+guid: e8c75c90aff2748518024d3192d5bcd5
+========
+guid: 4cd871cb3a67c4244b7f8bf03026bb2d
+folderAsset: yes
+>>>>>>>> 6f3c707 (ground tile, spike, flag):Assets/Resources/Level/Animations.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
