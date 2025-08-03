@@ -65,7 +65,10 @@ public class ActionBlockController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SetNewRow());
+            if (!ActionBlockQueueGrid.Instance.CheckIsEmpty())
+            {
+                StartCoroutine(SetNewRow());
+            }
         }
     }
 
