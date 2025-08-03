@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 
 public class ActionBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public ActionType actionType;
+
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
@@ -15,12 +17,16 @@ public class ActionBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
+    }
+
+    private void Start()
+    {
+        canvas = GetComponentInParent<Canvas>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)

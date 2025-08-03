@@ -749,6 +749,55 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7289316418745853655, guid: 4ba92ca108ca44719918146b187f209f, type: 3}
   m_PrefabInstance: {fileID: 3166329074545113952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2035057297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035057298}
+  - component: {fileID: 2035057299}
+  m_Layer: 0
+  m_Name: InGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035057298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035057297}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035057299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035057297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef3622c3f38b47498c2c546c1fcda6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameStartEvent: {fileID: 11400000, guid: 768e8822674594827bdc288d21d5f31f, type: 2}
+  _gameFailedEvent: {fileID: 11400000, guid: 82430b90a1d624cdcbbb424f9d138e96, type: 2}
+  _gameClearEvent: {fileID: 11400000, guid: 6c3cf4c906cb84b4a813568c30af5a1f, type: 2}
+  _turnStartEvent: {fileID: 11400000, guid: df80b81a49353496fb3ac7e7123f94de, type: 2}
+  _turnEndEvent: {fileID: 11400000, guid: 39b283d18eb914eed87c870c048cbaac, type: 2}
 --- !u!1001 &3166329074545113952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,6 +806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 613274928}
     m_Modifications:
+    - target: {fileID: 915954104499781084, guid: 4ba92ca108ca44719918146b187f209f, type: 3}
+      propertyPath: _turnStartEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: df80b81a49353496fb3ac7e7123f94de, type: 2}
     - target: {fileID: 3107665792700145874, guid: 4ba92ca108ca44719918146b187f209f, type: 3}
       propertyPath: m_Name
       value: UI
@@ -856,3 +909,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 8007367}
+  - {fileID: 2035057298}
