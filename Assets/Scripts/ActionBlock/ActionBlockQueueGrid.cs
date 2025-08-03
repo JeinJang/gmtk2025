@@ -147,6 +147,8 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
     {
         ActionBlockRow.Instance.ClearBlock();
 
+        if (CheckIsEmpty()) return;
+
         for (int col = 0; col < columns; col++)
         {
             GameObject block = blockGrid[col, 0];
@@ -223,6 +225,19 @@ public class ActionBlockQueueGrid : ActionBlockDragZone, IDropHandler
         }
 
         return copy;
+    }
+
+    public bool CheckIsEmpty()
+    {
+        bool isEmpty = true;
+        for (int x = 0; x < columns; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                if (blockGrid[x, y] != null) isEmpty = false;
+            }
+        }
+        return isEmpty;
     }
 
 }
