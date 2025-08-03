@@ -93,7 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameStartEvent: {fileID: 11400000, guid: 768e8822674594827bdc288d21d5f31f, type: 2}
   _gameFailedEvent: {fileID: 11400000, guid: 82430b90a1d624cdcbbb424f9d138e96, type: 2}
-  _turnStartEvent: {fileID: 11400000, guid: df80b81a49353496fb3ac7e7123f94de, type: 2}
   _turnEndEvent: {fileID: 11400000, guid: 39b283d18eb914eed87c870c048cbaac, type: 2}
 --- !u!1 &4473905277353284897
 GameObject:
@@ -168,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3598936dad8145f7b8a041979df452f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turnStartEvent: {fileID: 11400000, guid: df80b81a49353496fb3ac7e7123f94de, type: 2}
   container: {fileID: 0}
   emptySlotPrefab: {fileID: 1503253744024965459, guid: b532454d83e7148f085393a31b2454f7, type: 3}
   cellWidth: 120

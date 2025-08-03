@@ -806,10 +806,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 613274928}
     m_Modifications:
-    - target: {fileID: 915954104499781084, guid: 4ba92ca108ca44719918146b187f209f, type: 3}
-      propertyPath: _turnStartEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: df80b81a49353496fb3ac7e7123f94de, type: 2}
     - target: {fileID: 3107665792700145874, guid: 4ba92ca108ca44719918146b187f209f, type: 3}
       propertyPath: m_Name
       value: UI
