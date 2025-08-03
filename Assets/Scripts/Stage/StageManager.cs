@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+
+    [SerializeField] private VoidEventChannelSO _gameClearEvent;
+
     public List<GameObject> stageFolders;
     public GameObject playerPrefab; // 인스펙터에 플레이어 프리팹 할당
 
@@ -49,6 +52,7 @@ public class StageManager : MonoBehaviour
     // Goal에 닿으면 이 함수를 호출
     public void OnStageClear()
     {
+        _gameClearEvent.RaiseEvent();
         NextStage();
     }
 }

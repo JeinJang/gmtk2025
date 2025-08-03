@@ -31,6 +31,7 @@ public class ActionBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (ActionBlockController.Instance.isGamePlaying) return;
         if (currentGrid != null && currentColumn >= 0 && currentRow >= 0)
         {
             currentGrid.ClearBlockAt(currentColumn, currentRow);
@@ -47,11 +48,13 @@ public class ActionBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (ActionBlockController.Instance.isGamePlaying) return;
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (ActionBlockController.Instance.isGamePlaying) return;
         canvasGroup.blocksRaycasts = true;
         // Drop되지 않았다면 원래 자리로 복귀
         if (transform.parent == canvas.transform)

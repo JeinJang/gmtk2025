@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c8129f2f5744b8938b3cdcb80b85e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _triggerMapActionEvent: {fileID: 11400000, guid: 81c0d15420c2f416ab49d86689bd039e,
+    type: 2}
   IsUp: 0
   UpButton: 0
   DownButton: 0
