@@ -85,14 +85,14 @@ public class ActionBlockRow : MonoBehaviour
             yield return seq.WaitForCompletion();
 
             _turnStartEvent.RaiseEvent(block.GetComponent<ActionBlock>().actionType);
-
-            Destroy(block.gameObject);
         }
         else
         {
             yield return new WaitForSeconds(0.25f);
             _turnStartEvent.RaiseEvent(null);
         }
+
+        Destroy(block);
 
         // 나머지 블록들 위치 이동
         for (int i = 0; i < blocksInRow.Count; i++)
