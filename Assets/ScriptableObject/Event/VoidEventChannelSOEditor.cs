@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 
+#if UNITY_EDITOR
 
 [CustomEditor(typeof(VoidEventChannelSO))]
 public class VoidEventChannelSOEditor : Editor
@@ -91,3 +92,5 @@ public class VoidEventChannelSOEditor : Editor
         return 0;
     }
 }
+
+#endif

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(ActionEventChannelSO))]
 public class ActionEventChannelSOEditor : Editor
 {
@@ -90,3 +91,4 @@ public class ActionEventChannelSOEditor : Editor
         return 0;
     }
 }
+#endif
