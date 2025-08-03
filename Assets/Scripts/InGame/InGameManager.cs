@@ -11,6 +11,11 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private ActionEventChannelSO _turnStartEvent;
     [SerializeField] private VoidEventChannelSO _turnEndEvent;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Update is called once per frame
     void Update()
     {

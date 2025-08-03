@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Move Backward Action Data
   m_EditorClassIdentifier: 
   type: 1
-  sprite: {fileID: 21300000, guid: 96589fa3442d6442bac51f5f30e8bdab, type: 3}
+  sprite: {fileID: -1835706914446734080, guid: 27e14331d8dff4d70a05e593e2b8d1c5, type: 3}

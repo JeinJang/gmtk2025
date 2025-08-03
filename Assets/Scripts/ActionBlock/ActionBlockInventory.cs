@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ActionBlockInventory : ActionBlockDragZone, IDropHandler
 {
+    public static ActionBlockInventory Instance { get; private set; }
+
     [SerializeField] private InitialActionBlockListSO _initialActionList;
 
     private GameObject _blockPrefab;
@@ -13,6 +15,7 @@ public class ActionBlockInventory : ActionBlockDragZone, IDropHandler
     protected override void Awake()
     {
         base.Awake();
+        Instance = this;
         _blockPrefab = Resources.Load("Prefabs/ActionBlock/Action Block") as GameObject;
 
         if (_blockPrefab == null)
@@ -44,7 +47,7 @@ public class ActionBlockInventory : ActionBlockDragZone, IDropHandler
         foreach (ActionBlockSO data in _initialActionList.list)
         {
             GameObject obj = Instantiate(_blockPrefab);
-            obj.GetComponent<Image>().sprite = data.sprite;
+            obj.transform.GetComponentInChildren<Image>().sprite = data.sprite;
             obj.GetComponent<ActionBlock>().actionType = data.type;
 
             obj.transform.SetParent(transform);
