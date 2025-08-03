@@ -20,12 +20,6 @@ public class InGameManager : MonoBehaviour
     void Update()
     {
         // 디버깅용
-        // 게임 시작 이벤트
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _gameStartEvent.RaiseEvent();
-        }
-
         // 게임 실패 이벤트
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -46,19 +40,8 @@ public class InGameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnGameStart()
     {
-        _turnStartEvent.OnEventRaised += OnTurnStart;
-    }
-
-    private void OnDisable()
-    {
-        _turnStartEvent.OnEventRaised -= OnTurnStart;
-    }
-
-
-    private void OnTurnStart()
-    {
-        Debug.Log(string.Format("액션: {0}", _turnStartEvent.actionType));
+        _gameStartEvent.RaiseEvent();
     }
 }
