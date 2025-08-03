@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 9035186259895537216}
   - component: {fileID: 6734272718986718762}
   m_Layer: 10
-  m_Name: Directive_Player
+  m_Name: MainPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
