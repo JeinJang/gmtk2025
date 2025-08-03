@@ -2,13 +2,8 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags:
-  - LevelBounds
-  - FX
-  - Enemy
-  - World
-  - NoMask
+  serializedVersion: 3
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,21 +13,21 @@ TagManager:
   - UI
   - 
   - 
-  - Obstacles
-  - Ground
-  - Player
-  - ObstaclesDoors
-  - NoPathfinding
-  - Enemies
-  - NoCollisions
-  - Hole
-  - MovingPlatform
-  - FallingPlatform
-  - Projectile
-  - Camera1
-  - Camera2
-  - Camera3
-  - Camera4
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -46,18 +41,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 1798043625
+  - name: GUI
+    uniqueID: 29107581
     locked: 0
-  - name: Ground
-    uniqueID: 2296623839
-    locked: 0
-  - name: Foreground
-    uniqueID: 1603220759
-    locked: 0
-  - name: Characters
-    uniqueID: 47421343
-    locked: 0
-  - name: Above
-    uniqueID: 961700441
-    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Light Layer 1
+  - Light Layer 2
+  - Light Layer 3
+  - Light Layer 4
+  - Light Layer 5
+  - Light Layer 6
+  - Light Layer 7
+
